@@ -1,3 +1,4 @@
+using Api;
 using DataAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<AppDbContext>();
+builder
+    .Services.AddOptionsWithValidateOnStart<S3Options>()
+    .Bind(builder.Configuration.GetSection(nameof(S3Options)))
+    .ValidateDataAnnotations();
 
 var app = builder.Build();
 
