@@ -5,4 +5,6 @@ namespace DataAccess;
 public class AppDbContext : IdentityDbContext<IdentityUser>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+    public virtual DbSet<ImageObject> ImageObjects { get; set; } = null!;
 }

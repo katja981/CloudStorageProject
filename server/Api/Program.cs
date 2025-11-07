@@ -1,4 +1,5 @@
 using Api;
+using Api.Services;
 using DataAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,8 @@ builder
     .Services.AddOptionsWithValidateOnStart<S3Options>()
     .Bind(builder.Configuration.GetSection(nameof(S3Options)))
     .ValidateDataAnnotations();
+
+builder.Services.AddSingleton<ObjectStorageService>();
 
 var app = builder.Build();
 
